@@ -1,0 +1,653 @@
+# 🐍 Python – príprava na test
+
+Kompletné poznámky z Pythonu: dátové typy, premenné, meniteľnosť, zoznamy, n-tice, slovníky, reťazce, funkcie, triedy a objekty.
+
+---
+
+## 📚 Obsah
+
+1. [Premenné](#1-premenné)
+2. [Dátové typy](#2-dátové-typy)
+3. [Meniteľné a nemeniteľné typy](#3-meniteľné-a-nemeniteľné-typy)
+4. [Prázdne hodnoty](#4-prázdne-hodnoty)
+5. [Zoznam – list](#5-zoznam--list)
+6. [N-tica – tuple](#6-n-tica--tuple)
+7. [Slovník – dict](#7-slovník--dict)
+8. [Reťazce – string](#8-reťazce--string)
+9. [Funkcie len(), type() a sorted()](#9-funkcie-len-type-a-sorted)
+10. [Triedy a objekty](#10-triedy-a-objekty)
+11. [Najčastejšie chyby](#11-najčastejšie-chyby)
+12. [Precvičovací test](#12-precvičovací-test)
+
+---
+
+## 1. Premenné
+
+Premenná je miesto, do ktorého si uložíme hodnotu.
+
+\`\`\`python
+meno = "Kristian"
+vek = 15
+vyska = 185
+student = True
+\`\`\`
+
+Premenné môžeme meniť:
+
+\`\`\`python
+vek = 15
+vek = 16
+\`\`\`
+
+Python automaticky rozpoznáva dátový typ podľa priradenej hodnoty.
+
+## 2. Dátové typy
+
+| Typ | Význam | Príklad |
+|---|---|---|
+| int | celé číslo | \`15\` |
+| float | desatinné číslo | \`3.14\` |
+| str | text | \`"Ahoj"\` |
+| bool | pravda/nepravda | \`True\` |
+| list | zoznam | \`[1, 2, 3]\` |
+| tuple | n-tica | \`(1, 2, 3)\` |
+| dict | slovník | \`{"meno": "Peter"}\` |
+| set | množina | \`{1, 2, 3}\` |
+| NoneType | žiadna hodnota | \`None\` |
+
+### Ako zistiť dátový typ?
+
+Použijeme funkciu \`type()\`.
+
+\`\`\`python
+cislo = 10
+print(type(cislo))  # <class 'int'>
+
+text = "Ahoj"
+print(type(text))   # <class 'str'>
+\`\`\`
+
+## 3. Meniteľné a nemeniteľné typy
+
+### Meniteľné (mutable)
+
+Hodnotu môžeme zmeniť bez vytvorenia nového objektu.
+
+- \`list\`
+- \`dict\`
+- \`set\`
+
+Príklad:
+
+\`\`\`python
+cisla = [1, 2, 3]
+cisla.append(4)
+
+print(cisla)
+# [1, 2, 3, 4]
+\`\`\`
+
+### Nemeniteľné (immutable)
+
+Hodnotu objektu nemožno priamo meniť. Operácie vytvárajú novú hodnotu.
+
+- \`int\`
+- \`float\`
+- \`str\`
+- \`bool\`
+- \`tuple\`
+- \`NoneType\`
+
+Príklad:
+
+\`\`\`python
+text = "Python"
+text.upper()
+
+print(text)
+# Python
+
+text = text.upper()
+print(text)
+# PYTHON
+\`\`\`
+
+**Dôležité:** Pri nemeniteľných typoch si musíme výsledok priradiť späť do premennej, ak ho chceme zachovať.
+
+## 4. Prázdne hodnoty
+
+| Zápis | Význam |
+|---|---|
+| \`None\` | žiadna hodnota |
+| \`""\` | prázdny reťazec |
+| \`[]\` | prázdny zoznam |
+| \`()\` | prázdna n-tica |
+| \`{}\` | prázdny slovník |
+| \`set()\` | prázdna množina |
+| \`0\` | nula |
+| \`False\` | nepravda |
+
+Pozor:
+- \`{}\` vytvorí prázdny slovník, nie množinu.
+- Prázdna množina sa vytvára pomocou \`set()\`.
+
+## 5. Zoznam – list
+
+Zoznam uchováva viacero hodnôt. Je meniteľný a zachováva poradie.
+
+\`\`\`python
+ovocie = ["jablko", "banan", "hruska"]
+
+print(ovocie[0])  # jablko
+print(ovocie[1])  # banan
+\`\`\`
+
+Indexovanie začína od nuly.
+
+### Dôležité metódy list
+
+| Metóda | Čo robí |
+|---|---|
+| \`append(x)\` | pridá prvok na koniec |
+| \`insert(i, x)\` | vloží prvok na pozíciu |
+| \`remove(x)\` | odstráni prvý výskyt hodnoty |
+| \`pop()\` | odstráni a vráti posledný prvok |
+| \`sort()\` | zoradí zoznam |
+| \`reverse()\` | obráti poradie prvkov |
+| \`count(x)\` | spočíta výskyty hodnoty |
+| \`index(x)\` | vráti index prvého výskytu |
+| \`clear()\` | vymaže celý zoznam |
+| \`copy()\` | vytvorí plytkú kópiu zoznamu |
+
+### Príklady
+
+\`\`\`python
+cisla = [3, 1, 2]
+
+cisla.append(4)
+# [3, 1, 2, 4]
+
+cisla.remove(1)
+# [3, 2, 4]
+
+cisla.sort()
+# [2, 3, 4]
+
+cisla.reverse()
+# [4, 3, 2]
+
+print(cisla.count(2))
+# 1
+\`\`\`
+
+### Veľmi dôležité: sort() a reverse()
+
+Metódy \`sort()\` a \`reverse()\` menia pôvodný zoznam a vracajú \`None\`.
+
+\`\`\`python
+cisla = [3, 1, 2]
+
+vysledok = cisla.sort()
+
+print(cisla)    # [1, 2, 3]
+print(vysledok) # None
+\`\`\`
+
+Ak chceme nový zoradený zoznam bez zmeny pôvodného, použijeme \`sorted()\`.
+
+\`\`\`python
+cisla = [3, 1, 2]
+nove = sorted(cisla)
+
+print(nove)   # [1, 2, 3]
+print(cisla)  # [3, 1, 2]
+\`\`\`
+
+## 6. N-tica – tuple
+
+N-tica je podobná zoznamu, ale je nemeniteľná.
+
+\`\`\`python
+suradnice = (10, 20)
+
+print(suradnice[0])
+# 10
+\`\`\`
+
+Hodnoty n-tice nemôžeme meniť ani pridávať či odoberať.
+
+\`\`\`python
+t = (3, 1, 2)
+t.sort()
+# AttributeError
+\`\`\`
+
+**Prečo?** Tuple nemá metódu \`sort()\`, pretože je nemeniteľná.
+
+Ak chceme zoradiť hodnoty n-tice:
+
+\`\`\`python
+t = (3, 1, 2)
+vysledok = sorted(t)
+
+print(vysledok)
+# [1, 2, 3]
+\`\`\`
+
+Použitie: napríklad súradnice, ktoré nechceme meniť.
+
+## 7. Slovník – dict
+
+Slovník ukladá údaje vo forme kľúč : hodnota.
+
+\`\`\`python
+student = {
+    "meno": "Peter",
+    "vek": 16,
+    "email": "peter@gmail.com"
+}
+
+print(student["meno"])
+# Peter
+\`\`\`
+
+### Pridanie a zmena údajov
+
+\`\`\`python
+student["trieda"] = "2.A"
+student["vek"] = 17
+\`\`\`
+
+### Odstránenie údajov
+
+\`\`\`python
+del student["vek"]
+\`\`\`
+
+### Metóda get()
+
+\`get()\` bezpečne načíta hodnotu podľa kľúča.
+
+\`\`\`python
+student = {"meno": "Peter"}
+
+print(student.get("meno"))
+# Peter
+
+print(student.get("email"))
+# None
+
+print(student.get("email", "Nezadaný"))
+# Nezadaný
+\`\`\`
+
+**Prečo používať get()?**
+
+Ak kľúč neexistuje, \`get()\` vráti \`None\` alebo nami zadanú predvolenú hodnotu. Pri priamom zápise \`student["email"]\` by vznikla chyba \`KeyError\`.
+
+Ďalšie užitočné metódy:
+
+| Metóda | Význam |
+|---|---|
+| \`keys()\` | vráti kľúče |
+| \`values()\` | vráti hodnoty |
+| \`items()\` | vráti dvojice kľúčov a hodnôt |
+| \`get()\` | bezpečne získa hodnotu |
+| \`pop()\` | odstráni kľúč a vráti jeho hodnotu |
+| \`update()\` | aktualizuje slovník |
+| \`clear()\` | vymaže slovník |
+
+## 8. Reťazce – string
+
+String je textový dátový typ. Je nemeniteľný.
+
+\`\`\`python
+veta = " AHOJ Python "
+\`\`\`
+
+### Užitočné metódy
+
+| Metóda | Čo robí |
+|---|---|
+| \`strip()\` | odstráni medzery na začiatku a konci |
+| \`capitalize()\` | prvé písmeno veľké, ostatné malé |
+| \`upper()\` | všetky písmená veľké |
+| \`lower()\` | všetky písmená malé |
+| \`replace(a, b)\` | nahradí text |
+| \`count(x)\` | spočíta výskyty |
+| \`find(x)\` | nájde pozíciu textu |
+
+### Príklady
+
+\`\`\`python
+veta = "  PYTHON je SkvElÝ  "
+
+print(veta.strip())
+# PYTHON je SkvElÝ
+
+print(veta.upper())
+#   PYTHON JE SKVELÝ
+
+print(veta.lower())
+#   python je skvelý
+
+print(veta.capitalize())
+#   python je skvelý
+\`\`\`
+
+### Kombinovanie metód
+
+\`\`\`python
+veta = " PYTHON je SkvElÝ "
+
+vysledok = veta.strip().capitalize()
+
+print(vysledok)
+# Python je skvelý
+
+print(veta)
+#  PYTHON je SkvElÝ
+\`\`\`
+
+**Pozor na test!**
+
+- \`strip()\` odstráni medzery iba na začiatku a konci.
+- \`capitalize()\` zmení prvé písmeno na veľké a zvyšok na malé.
+- String je nemeniteľný.
+- Výsledok treba priradiť do premennej, ak ho chceme uložiť.
+
+## 9. Funkcie len(), type() a sorted()
+
+### len()
+
+Vráti počet prvkov alebo znakov.
+
+\`\`\`python
+zoznam = [1, 2, 3, 4]
+print(len(zoznam))
+# 4
+
+text = "Python"
+print(len(text))
+# 6
+\`\`\`
+
+### type()
+
+Zistí dátový typ.
+
+\`\`\`python
+print(type(15))
+# <class 'int'>
+\`\`\`
+
+### sorted()
+
+Vráti nový zoradený zoznam.
+
+\`\`\`python
+cisla = [5, 2, 8, 1]
+print(sorted(cisla))
+# [1, 2, 5, 8]
+\`\`\`
+
+## 10. Triedy a objekty
+
+### Čo je trieda?
+
+Trieda (\`class\`) je predloha alebo šablóna, podľa ktorej vytvárame objekty.
+
+### Čo je objekt?
+
+Objekt je konkrétna vytvorená inštancia triedy.
+
+Príklad zo života:
+- Trieda = plán auta.
+- Objekt = konkrétne vyrobené auto.
+
+### Vytvorenie triedy
+
+\`\`\`python
+class Auto:
+    def __init__(self, znacka, rok):
+        self.z znacka = znacka
+        self.rok = rok
+\`\`\`
+
+Správny zápis atribútu v príklade je \`self.znacka = znacka\`. Celý funkčný príklad:
+
+\`\`\`python
+class Auto:
+    def __init__(self, znacka, rok):
+        self.znacka = znacka
+        self.rok = rok
+
+    def vypis_info(self):
+        print(self.znacka, self.rok)
+
+
+auto1 = Auto("BMW", 2020)
+auto2 = Auto("Audi", 2022)
+
+auto1.vypis_info()
+# BMW 2020
+\`\`\`
+
+### Vysvetlenie
+
+| Pojem | Význam |
+|---|---|
+| \`class\` | vytvorí triedu |
+| \`__init__\` | inicializuje nový objekt |
+| \`self\` | odkaz na konkrétny objekt |
+| atribút | vlastnosť objektu |
+| metóda | funkcia definovaná v triede |
+| objekt | konkrétna inštancia triedy |
+
+**Dôležité:** \`self\` označuje konkrétny objekt, s ktorým práve pracujeme.
+
+## 11. Najčastejšie chyby
+
+### Chyba 1 – zabudnuté priradenie
+
+\`\`\`python
+veta = " PYTHON "
+veta.strip()
+print(veta)
+\`\`\`
+
+Výsledok stále obsahuje pôvodné medzery, pretože string je nemeniteľný.
+
+Správne:
+
+\`\`\`python
+veta = veta.strip()
+\`\`\`
+
+### Chyba 2 – sort() vracia None
+
+\`\`\`python
+cisla = [3, 1, 2]
+vysledok = cisla.sort()
+
+print(vysledok)
+# None
+\`\`\`
+
+### Chyba 3 – tuple nemá sort()
+
+\`\`\`python
+t = (3, 1, 2)
+t.sort()
+# AttributeError
+\`\`\`
+
+### Chyba 4 – neexistujúci kľúč v slovníku
+
+\`\`\`python
+student = {"meno": "Peter"}
+
+print(student["email"])
+# KeyError
+\`\`\`
+
+Bezpečnejšie:
+
+\`\`\`python
+print(student.get("email", "Nezadaný"))
+\`\`\`
+
+---
+
+## 12. Precvičovací test
+
+Skús odpovedať bez pozerania do poznámok. Správne odpovede sú ukryté pod otázkami.
+
+### Otázka 1
+Aký je rozdiel medzi triedou a objektom?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Trieda je šablóna a objekt je konkrétna inštancia triedy.
+</details>
+
+### Otázka 2
+Čo sa stane?
+
+\`\`\`python
+t = (3, 1, 2)
+t.sort()
+\`\`\`
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Vznikne chyba AttributeError, pretože tuple nemá metódu sort().
+</details>
+
+### Otázka 3
+Čo robí tento kód?
+
+\`\`\`python
+veta = veta.strip()
+\`\`\`
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Odstráni medzery zo začiatku a konca reťazca a výsledok uloží späť do premennej veta.
+</details>
+
+### Otázka 4
+Čo robia metódy append(), remove(), sort() a reverse()?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+- append() – pridá prvok na koniec.
+- remove() – odstráni prvý výskyt hodnoty.
+- sort() – zoradí pôvodný zoznam.
+- reverse() – obráti poradie pôvodného zoznamu.
+
+Všetky tieto metódy menia pôvodný zoznam a vracajú None.
+</details>
+
+### Otázka 5
+Čo vráti sort() a čo count(5)?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+sort() vráti None, pretože mení pôvodný zoznam. count(5) vráti celé číslo – počet výskytov hodnoty 5.
+</details>
+
+### Otázka 6
+Aký bude výsledok?
+
+\`\`\`python
+veta = " PYTHON je SkvElÝ "
+vysledok = veta.strip().capitalize()
+print(vysledok)
+\`\`\`
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+\`Python je skvelý\`
+</details>
+
+### Otázka 7
+Zmení sa pôvodná premenná veta?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Nie. String je nemeniteľný. Výsledok sa uloží do premennej vysledok.
+</details>
+
+### Otázka 8
+Ktorá funkcia spočíta počet prvkov v zozname?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+\`len()\`
+</details>
+
+### Otázka 9
+Prečo použiť dict.get() namiesto priameho prístupu cez hranaté zátvorky?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Ak kľúč neexistuje, get() vráti None alebo predvolenú hodnotu namiesto chyby KeyError.
+</details>
+
+### Otázka 10
+Ktorý dátový typ je vhodný na uloženie súradníc, ktoré sa nemajú meniť?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Tuple – n-tica.
+</details>
+
+### Otázka 11
+Ktorý typ je vhodný na ukladanie známych osôb, ak potrebujeme pridávať a odoberať mená?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+List – zoznam.
+</details>
+
+### Otázka 12
+Ktorý typ je vhodný na uloženie mena, veku a e-mailu pod pomenovanými kľúčmi?
+
+<details>
+<summary>Zobraziť odpoveď</summary>
+
+Dict – slovník.
+</details>
+
+---
+
+## ⭐ Najdôležitejšie veci pred testom
+
+1. Trieda je šablóna, objekt je konkrétna inštancia.
+2. List, dict a set sú meniteľné.
+3. String, tuple, int, float a bool sú nemeniteľné.
+4. \`sort()\` mení zoznam a vracia \`None\`.
+5. \`reverse()\` mení zoznam a vracia \`None\`.
+6. \`count()\` vracia počet výskytov.
+7. \`len()\` počíta prvky alebo znaky.
+8. \`strip()\` odstraňuje okrajové medzery.
+9. \`capitalize()\` spraví prvé písmeno veľké a zvyšok malý.
+10. \`dict.get()\` pomáha predísť chybe KeyError.
+11. Prázdny slovník je \`{}\`, prázdna množina je \`set()\`.
+12. \`tuple\` nemá metódu \`sort()\`.
+
+---
+
+**Veľa šťastia na teste! 🐍**
