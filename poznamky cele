@@ -1,0 +1,127 @@
+Python – stručné poznámky na test
+1. Premenné
+- Premenná uchováva hodnotu.
+- Python automaticky určuje dátový typ podľa hodnoty.
+- Hodnotu premennej môžeme meniť.
+2. Dátové typy
+Typ	Význam
+int	Celé číslo
+float	Desatinné číslo
+str	Text
+bool	Pravda alebo nepravda
+list	Zoznam
+tuple	N-tica
+dict	Slovník
+set	Množina
+NoneType	Žiadna hodnota
+
+3. Mutable a immutable
+Mutable – meniteľné:
+- list
+- dict
+- set
+Immutable – nemeniteľné:
+- int
+- float
+- str
+- bool
+- tuple
+- NoneType
+4. Prázdne hodnoty
+Zápis	Význam
+None	Žiadna hodnota
+""	Prázdny text
+[]	Prázdny zoznam
+()	Prázdna n-tica
+{}	Prázdny slovník
+set()	Prázdna množina
+0	Nula
+False	Nepravda
+
+Pozor: {} je prázdny slovník, nie množina.
+5. List – zoznam
+- Zapisuje sa pomocou [].
+- Je mutable.
+- Zachováva poradie prvkov.
+- Umožňuje duplicitné hodnoty.
+- Indexovanie začína od nuly.
+Metódy:
+- append() – pridá prvok.
+- insert() – vloží prvok na pozíciu.
+- remove() – odstráni prvok.
+- pop() – odstráni a vráti prvok.
+- sort() – zoradí zoznam.
+- reverse() – obráti poradie.
+- count() – spočíta výskyty.
+- index() – nájde index.
+- clear() – vymaže zoznam.
+- copy() – vytvorí kópiu.
+6. Tuple – n-tica
+- Zapisuje sa pomocou ().
+- Je immutable.
+- Zachováva poradie.
+- Umožňuje duplicitné hodnoty.
+- Je vhodná na uchovávanie nemenných údajov.
+- Nemá metódu sort().
+7. Dict – slovník
+- Zapisuje sa pomocou {}.
+- Ukladá údaje vo forme kľúčov a hodnôt.
+- Je mutable.
+- Každý kľúč musí byť jedinečný.
+Metódy:
+- keys() – vráti kľúče.
+- values() – vráti hodnoty.
+- items() – vráti kľúče a hodnoty.
+- get() – bezpečne získa hodnotu.
+- pop() – odstráni kľúč.
+- update() – aktualizuje slovník.
+- clear() – vymaže slovník.
+8. String – reťazec
+- Ukladá text.
+- Zapisuje sa do úvodzoviek.
+- Je immutable.
+Metódy:
+- strip() – odstráni okrajové medzery.
+- capitalize() – prvé písmeno veľké, ostatné malé.
+- upper() – veľké písmená.
+- lower() – malé písmená.
+- replace() – nahradí text.
+- count() – spočíta výskyty.
+- find() – nájde pozíciu textu.
+9. Funkcie
+- len() – zisťuje počet prvkov alebo znakov.
+- type() – zisťuje dátový typ.
+- sorted() – vytvorí nový zoradený zoznam.
+Rozdiel:
+- sort() mení pôvodný zoznam a vracia None.
+- sorted() vytvorí nový zoradený zoznam a pôvodný nemení.
+10. Triedy a objekty
+- Trieda (class) – predloha na vytváranie objektov.
+- Objekt – konkrétna inštancia triedy.
+- Atribút – vlastnosť objektu.
+- Metóda – funkcia definovaná v triede.
+- __init__ – inicializuje nový objekt.
+- self – odkazuje na aktuálny objekt.
+11. Najčastejšie chyby
+- tuple nemá metódu sort().
+- sort() vracia None.
+- reverse() vracia None.
+- Pri práci so stringom treba výsledok priradiť späť, ak ho chceme uložiť.
+- Pri neexistujúcom kľúči slovníka vznikne KeyError.
+- dict.get() umožňuje bezpečne získať hodnotu bez tejto chyby.
+
+12. Najdôležitejšie na zapamätanie
+1. list, dict, set = mutable.
+2. str, tuple, int, float, bool = immutable.
+3. [ ] = prázdny list.
+4. () = prázdny tuple.
+5. {} = prázdny dict.
+6. set() = prázdny set.
+7. type() = zisťuje typ.
+8. len() = zisťuje počet.
+9. sort() = mení pôvodný zoznam.
+10. sorted() = vytvára nový zoznam.
+11. Trieda = predloha.
+12. Objekt = inštancia triedy.
+13. self = aktuálny objekt.
+14. __init__ = inicializácia objektu.
